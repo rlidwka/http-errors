@@ -147,4 +147,14 @@ describe('HTTP Errors', function () {
     assert.equal(err.statusCode, 404);
     assert(err.stack);
   })
+
+  it('should mimic Error object properties', function () {
+    assert.equal(typeof(create.captureStackTrace), 'function')
+
+    var t = Error.stackTraceLimit
+    create.stackTraceLimit = 123
+    assert.equal(create.stackTraceLimit, 123)
+    assert.equal(Error.stackTraceLimit, 123)
+    Error.stackTraceLimit = t
+  })
 })

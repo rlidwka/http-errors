@@ -70,3 +70,11 @@ codes.forEach(function (code) {
   exports[statuses[code].replace(/\s+/g, '')] = ClientError;
   return;
 });
+
+exports.captureStackTrace = Error.captureStackTrace
+Object.defineProperty(exports, 'stackTraceLimit', {
+  get: function ()  { return Error.stackTraceLimit },
+  set: function (v) { Error.stackTraceLimit = v },
+  enumerable: true,
+  configurable: true,
+})
